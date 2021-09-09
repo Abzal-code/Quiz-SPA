@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="block__footer">
-          <button class="next" @click="nextQuestion" :disabled="getcheckbtn">Дальше &#8594;</button>
+          <button class="next" @click="nextQuestion()" :disabled="getcheckbtn">Дальше &#8594;</button>
         </div>
       </div>
       <div class="question__number">
@@ -23,9 +23,7 @@
     </div>
     <div class="block__result" v-if="result">
 
-      <div class="result__wrapper"
-           v-show="this.crow.length !== 0 && this.crow.length > this.cheetah.length || this.bear.length"
-      >
+      <div v-if="testResult === 3" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
             <img src="@/assets/crow.png" alt="">
@@ -46,9 +44,7 @@
         </div>
       </div>
 
-      <div class="result__wrapper"
-           v-show="this.bear.length !== 0 && this.bear.length > this.cheetah.length || this.crow.length"
-      >
+      <div v-if="testResult === 2" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
             <img src="@/assets/bear.png" alt="">
@@ -69,8 +65,7 @@
         </div>
       </div>
 
-      <div class="result__wrapper"
-           v-show="this.cheetah.length !== 0 && this.cheetah.length > this.bear.length || this.crow.length">
+      <div v-if="testResult === 1" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
             <img src="@/assets/cheetah.png" alt="">
@@ -154,7 +149,9 @@ export default {
       crow: [],
       bear: [],
       checked: true,
-      disabled: true
+      disabled: true,
+      testResult: 0,
+      selectValue: ''
     }
   },
   computed: {
@@ -175,17 +172,29 @@ export default {
   },
   methods: {
     selectResponse(value) {
-      if (value == 'cheetah') {
-        this.cheetah.push(value)
-      } else if (value == 'bear') {
-        this.bear.push(value)
-      } else {
-        this.crow.push(value)
-      }
-      console.log(this.bear, this.cheetah, this.crow)
+      return this.selectValue = value;
     },
 
     nextQuestion() {
+      if (this.selectValue === 'cheetah') {
+        this.cheetah.push(this.selectValue)
+      } else if (this.selectValue === 'bear') {
+        this.bear.push(this.selectValue)
+      } else {
+        this.crow.push(this.selectValue)
+      }
+
+      if (this.cheetah.length !== 0 && this.cheetah.length > this.bear.length || this.cheetah.length !== 0 && this.cheetah.length > this.crow.length){
+        this.testResult = 1;
+      } else if (this.bear.length !== 0 && this.bear.length > this.cheetah.length || this.bear.length !== 0 && this.bear.length > this.crow.length){
+        this.testResult = 2;
+      } else if (this.crow.length !== 0 && this.crow.length > this.bear.length || this.crow.length !== 0 && this.crow.length > this.cheetah.length){
+        this.testResult = 3;
+      }
+      console.log(this.bear, this.cheetah, this.crow, this.testResult)
+
+      let selectResponse = this.selectResponse()
+      console.log(selectResponse);
       if (this.questions.length - 1 == this.a) {
         this.result = true
         this.quiz = false
