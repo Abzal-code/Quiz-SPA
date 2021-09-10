@@ -1,5 +1,13 @@
 <template>
-  <div class="home">
+  <div class="home" @click="nextSlide()">
+    <swiper class="swiper" :options="swiperOption" :loop="true">
+      <swiper-slide class="slide-1">
+        <img src="@/assets/crow.png" width="200" style="border: 2px solid">
+      </swiper-slide>
+      <swiper-slide class="slide-2">
+        <img src="@/assets/bear.png" width="200" style="border: 2px solid">
+      </swiper-slide>
+    </swiper>
     <div class="home__container">
       <div class="main__home">
         <div class="main__container">
@@ -41,19 +49,46 @@
 <script>
 // @ is an alias to /src
 import Button from "../components/UI/Button";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper-bundle.css";
+
+
+import "swiper/swiper-bundle.min.css";
+import 'swiper/swiper.scss'
+
 export default {
   name: 'Home',
   components: {
     Button,
+    Swiper,
+    SwiperSlide
   },
   data() {
     return {
       images: ['@/assets/crow.png', '@/assets/bear.png', '@/assets/cheetah.png'],
       idx: 0,
-      polling: null
+      polling: null,
+
+      swiperOption: {
+        spaceBetween: 30,
+        // effect: 'fade',
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 200,
+          // disableOnInteraction: false
+        },
+      }
     }
   },
   methods: {
+    nextSlide() {
+      const swiper = document.querySelector('.swiper').swiper;
+
+// Now you can use all slider methods like
+      swiper.slideNext();
+    },
+
     animation() {
       const interval = 3000
 
@@ -239,6 +274,20 @@ body {
   .btnn {
     @media(min-width: 545px) {
       display: none;
+    }
+  }
+
+  .swiper {
+    height: 360px;
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      &.slide-1 {
+        background-image:url('/src/assets/bear.png')
+      }
+      &.slide-2 {
+        background-image:url('/src/assets/crow.png')
+      }
     }
   }
 }
