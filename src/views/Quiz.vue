@@ -8,13 +8,13 @@
         <div class="block__option">
           <div class="option" v-for="(item, index) in element.suggestions" :key="index">
             <label>
-              <input type="radio" name="{{item.type}}" value="{{item.type}}" @click="selectResponse(item.type)" :checked="getchecked">
+              <input type="radio" name="{{item.type}}" value="{{item.type}}" @click="selectResponse(item.type)" :checked="false">
               {{item.suggestion}}
             </label>
           </div>
         </div>
         <div class="block__footer">
-          <button class="next" @click="nextQuestion()" :disabled="getcheckbtn">Дальше &#8594;</button>
+          <button class="next" @click="nextQuestion()">Дальше &#8594;</button>
         </div>
       </div>
       <div class="question__number">
@@ -23,7 +23,7 @@
     </div>
     <div class="block__result" v-if="result">
 
-      <div v-if="testResult === 3" class="result__wrapper">
+      <div v-if="testResult === 'crow'" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
             <img src="@/assets/crow.png" alt="">
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div v-if="testResult === 2" class="result__wrapper">
+      <div v-if="testResult === 'bear'" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
             <img src="@/assets/bear.png" alt="">
@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <div v-if="testResult === 1" class="result__wrapper">
+      <div v-if="testResult === 'cheetah'" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
             <img src="@/assets/cheetah.png" alt="">
@@ -145,85 +145,72 @@ export default {
       type: '',
       quiz: true,
       result: false,
-      cheetah: [],
-      crow: [],
-      bear: [],
+      cheetah: 0,
+      crow: 0,
+      bear: 0,
       checked: true,
-      disabled: true,
-      testResult: 0,
-      selectValue: ''
+      testResult: '',
+      selectValue: '',
     }
   },
   computed: {
-    getchecked() {
-      if (this.checked) {
-        return  false
-      } else {
-        return  true
-      }
-    },
-    getcheckbtn() {
-      if (this.disabled && this.getchecked) {
-        return  true
-      } else {
-        return  false
-      }
-    }
+
   },
   methods: {
     selectResponse(value) {
+      console.log(value)
       return this.selectValue = value;
     },
 
     nextQuestion() {
-      if (this.selectValue === 'cheetah') {
-        this.cheetah.push(this.selectValue)
-      } else if (this.selectValue === 'bear') {
-        this.bear.push(this.selectValue)
-      } else {
-        this.crow.push(this.selectValue)
-      }
-
-      if (this.cheetah.length !== 0 && this.cheetah.length > this.bear.length || this.cheetah.length !== 0 && this.cheetah.length > this.crow.length){
-        this.testResult = 1;
-      } else if (this.bear.length !== 0 && this.bear.length > this.cheetah.length || this.bear.length !== 0 && this.bear.length > this.crow.length){
-        this.testResult = 2;
-      } else if (this.crow.length !== 0 && this.crow.length > this.bear.length || this.crow.length !== 0 && this.crow.length > this.cheetah.length){
-        this.testResult = 3;
-      }
-      console.log(this.bear, this.cheetah, this.crow, this.testResult)
-
-      let selectResponse = this.selectResponse()
-      console.log(selectResponse);
       if (this.questions.length - 1 == this.a) {
         this.result = true
         this.quiz = false
       } else {
-          this.a++
-          this.b++
+        this.a++
+        this.b++
       }
+
+
+      if (this.selectValue === 'cheetah') {
+        this.cheetah++
+      } else if (this.selectValue === 'bear') {
+        this.bear++
+      } else if(this.selectValue === 'crow') {
+        this.crow++
+      }
+
+      if (this.cheetah > this.bear && this.cheetah > this.crow){
+        this.testResult = 'cheetah';
+      } else if (this.bear > this.cheetah && this.bear > this.crow){
+        this.testResult = 'bear';
+      } else if (this.crow > this.bear && this.crow > this.cheetah){
+        this.testResult = 'crow';
+      } else {
+        this.a--
+        this.b--
+      }
+      console.log(this.bear, this.cheetah, this.crow)
+
+
+
     },
 
   },
-  // computed: {
-  //   getCheck() {
-  //     if (this.checked == true) {
-  //      return  this.checked = false
-  //     } else {
-  //       return  this.checked = true
-  //     }
-  //   }
-  // }
 }
 </script>
 
 <style lang="scss" scoped>
   .quiz {
     display: flex;
-    margin-top: 50px;
+    height: 100vh;
+    @media(max-width: 545px) {
+      width: auto;
+    }
     .quiz__container {
       display: flex;
       justify-content: center;
+      align-items: center;
       width: 100%;
       height: 100%;
       @media(max-width: 545px) {
@@ -233,9 +220,16 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media(max-width: 545px) {
+          width: auto;
+          padding: 20px;
+        }
         .block__question {
           width: 739px;
           text-align: center;
+          @media(max-width: 545px) {
+            width: auto;
+          }
           p {
             font-family: Exo2;
             font-style: normal;
@@ -243,13 +237,51 @@ export default {
             font-size: 20px;
             line-height: 24px;
             color: #000000;
+            @media (max-width: 545px) {
+              font-family: Exo 2;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 20px;
+              line-height: 24px;
+              color: #ffffff;
+            }
           }
         }
         .block__option {
-
+          margin-top: 20px;
+          .option {
+            label {
+              font-family: PT Sans;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 16px;
+              line-height: 21px;
+              color: #000000;
+              @media(max-width: 545px) {
+                font-family: PT Sans;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 21px;
+                color: #000000;
+              }
+            }
+          }
         }
         .block__footer {
-
+          display: flex;
+          margin-top: 20px;
+          width: 30%;
+          height: 30px;
+          .next {
+            background: rgba(89, 85, 255, 0.99);
+            border-color: rgba(89, 85, 255, 0.99);
+            width: 100%;
+            height: 30px;
+            border-radius: 7px;
+            color: #ffffff;
+            cursor: pointer;
+          }
         }
       }
       .question__number {
@@ -263,6 +295,9 @@ export default {
           line-height: 90px;
           text-align: center;
           color: #ffffff;
+          @media(max-width: 545px) {
+            display: none;
+          }
         }
       }
     }
@@ -280,8 +315,10 @@ export default {
             background: url("../assets/resultbg.png") ;
             background-size: cover;
             background-position: 50% 50%;
-            img {
-              width: 80%;
+            background-clip: content-box;
+
+              img {
+              width: 100%;
             }
           }
           .result__text {

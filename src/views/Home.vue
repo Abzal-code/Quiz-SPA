@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="img__block">
-          <img src="@/assets/crow.png" alt="">
+          <img :src="this.polling" alt="">
         </div>
       </div>
       <Button class="btnn"/>
@@ -44,8 +44,36 @@ import Button from "../components/UI/Button";
 export default {
   name: 'Home',
   components: {
-    Button
+    Button,
   },
+  data() {
+    return {
+      images: ['@/assets/crow.png', '@/assets/bear.png', '@/assets/cheetah.png'],
+      idx: 0,
+      polling: null
+    }
+  },
+  methods: {
+    animation() {
+      const interval = 3000
+
+      this.images.forEach((item, index) => {
+         let counter = setTimeout(()=>{
+          this.polling = item
+           console.log(this.polling)
+        }, interval * index)
+        if (counter == 0) {
+          return counter
+        } else  {
+          return counter
+        }
+      })
+
+    }
+  },
+  created() {
+    this.animation()
+  }
 }
 </script>
 
