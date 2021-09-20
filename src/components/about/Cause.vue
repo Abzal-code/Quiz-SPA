@@ -13,7 +13,7 @@
             Анализируя поведение партнёров, мы составили тест на стиль поведения.
           </p>
         </div>
-        <router-link class="cause__btn" to="/quiz">Пройти тест</router-link>
+<!--        <router-link class="cause__btn" to="/quiz">Пройти тест</router-link>-->
       </div>
       <div class="block__img">
         <img src="@/assets/footer.png" alt="">
@@ -23,10 +23,8 @@
 </template>
 
 <script>
-import Button from "../UI/Button";
 export default {
   name: 'Cause',
-  components: Button
 }
 
 </script>

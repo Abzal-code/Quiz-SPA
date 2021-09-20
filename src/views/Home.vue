@@ -1,13 +1,5 @@
 <template>
   <div class="home" @click="nextSlide()">
-    <swiper class="swiper" :options="swiperOption" :loop="true">
-      <swiper-slide class="slide-1">
-        <img src="@/assets/crow.png" width="200" style="border: 2px solid">
-      </swiper-slide>
-      <swiper-slide class="slide-2">
-        <img src="@/assets/bear.png" width="200" style="border: 2px solid">
-      </swiper-slide>
-    </swiper>
     <div class="home__container">
       <div class="main__home">
         <div class="main__container">
@@ -38,7 +30,23 @@
           </div>
         </div>
         <div class="img__block">
-          <img :src="this.polling" alt="">
+          <swiper class="swiper"
+                  :options="swiperOption"
+                  :loop="true"
+                  :autoplay='{
+                    "delay": 2500,
+                    "disableOnInteraction": false
+            }'>
+            <swiper-slide class="slide-1">
+              <img src="@/assets/crow.png">
+            </swiper-slide>
+            <swiper-slide class="slide-2">
+              <img src="@/assets/bear.png">
+            </swiper-slide>
+            <swiper-slide class="slide-3">
+              <img src="@/assets/cheetah.png">
+            </swiper-slide>
+          </swiper>
         </div>
       </div>
       <Button class="btnn"/>
@@ -49,9 +57,10 @@
 <script>
 // @ is an alias to /src
 import Button from "../components/UI/Button";
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { Swiper, SwiperSlide, } from "swiper/vue";
 import "swiper/swiper-bundle.css";
-
+import SwiperCore, {Autoplay} from 'swiper';
+SwiperCore.use([Autoplay]);
 
 import "swiper/swiper-bundle.min.css";
 import 'swiper/swiper.scss'
@@ -65,7 +74,6 @@ export default {
   },
   data() {
     return {
-      images: ['@/assets/crow.png', '@/assets/bear.png', '@/assets/cheetah.png'],
       idx: 0,
       polling: null,
 
@@ -74,11 +82,7 @@ export default {
         // effect: 'fade',
         loop: true,
         centeredSlides: true,
-        autoplay: {
-          delay: 200,
-          // disableOnInteraction: false
-        },
-      }
+      },
     }
   },
   methods: {
@@ -86,29 +90,13 @@ export default {
       const swiper = document.querySelector('.swiper').swiper;
 
 // Now you can use all slider methods like
-      swiper.slideNext();
+      swiper.slideNext(1000, false)
+//       setInterval(() => {
+//         swiper.slideNext();
+//       }, 3000)
     },
 
-    animation() {
-      const interval = 3000
-
-      this.images.forEach((item, index) => {
-         let counter = setTimeout(()=>{
-          this.polling = item
-           console.log(this.polling)
-        }, interval * index)
-        if (counter == 0) {
-          return counter
-        } else  {
-          return counter
-        }
-      })
-
-    }
   },
-  created() {
-    this.animation()
-  }
 }
 </script>
 

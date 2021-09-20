@@ -80,9 +80,9 @@
               Попробуйте поработать с инвестициями в тендеры от компании «Тендерная Биржа». 60 дней — небольшой срок ожидания. Прибыль до 10% — возможность оценить реалистичный доход от вложений и узнать преимущества стабильного результата.
             </div>
           </div>
-          <div class="result__share">
-            Поделиться результатом &#8594;
-          </div>
+<!--          <div class="result__share">-->
+<!--            Поделиться результатом &#8594;-->
+<!--          </div>-->
         </div>
       </div>
       <result-card/>
@@ -206,6 +206,7 @@ export default {
     height: 100vh;
     @media(max-width: 545px) {
       width: auto;
+      padding: 10px;
     }
     .quiz__container {
       display: flex;
@@ -238,7 +239,7 @@ export default {
             line-height: 24px;
             color: #000000;
             @media (max-width: 545px) {
-              font-family: Exo 2;
+              font-family: Exo2;
               font-style: normal;
               font-weight: bold;
               font-size: 20px;
@@ -312,11 +313,12 @@ export default {
           display: flex;
           flex-direction: column;
           .result__img {
-            background: url("../assets/resultbg.png") ;
-            background-size: cover;
-            background-position: 50% 50%;
-            background-clip: content-box;
-
+            @media(min-width: 545px) {
+              background: url("../assets/resultbg.png") no-repeat;
+              background-size: auto auto;
+              background-position: 50% 50%;
+              background-clip: content-box;
+            }
               img {
               width: 100%;
             }
@@ -333,6 +335,9 @@ export default {
               line-height: 21px;
               text-transform: uppercase;
               color: #000000;
+              @media(max-width: 545px) {
+                color: #ffffff;
+              }
             }
             .result__body {
               font-family: Exo2;
@@ -344,7 +349,8 @@ export default {
             }
           }
           .result__share {
-
+            margin-top: 40px;
+            color: #5955FF;
           }
         }
 
