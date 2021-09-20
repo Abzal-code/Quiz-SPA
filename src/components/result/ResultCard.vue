@@ -27,7 +27,7 @@
       <span>
         <i class="material-icons" v-on:click.stop.prevent="showModal = false">&#10008;</i>
       </span>
-      <form id="SendCallback" v-on:submit.prevent="SubmitForm()" method="post" data-open-new-window="0">
+      <form id="SendCallback" action="#" method="post" data-open-new-window="0">
         <input type="hidden" name="formParams[setted_offer_id]" ><br>
         <input id="name" type="text" maxlength="60"  placeholder="Имя Фамилия" name="formParams[full_name]" value="" required><br>
         <input id="phone" type="text" maxlength="60"  placeholder="Телефон" name="formParams[phone]" value="" required><br>
@@ -53,17 +53,19 @@ export default {
     }
   },
   methods: {
-    SubmitForm: function()  {
-      document.forms['SendCallback'].action='https://formspree.io/f/xayadkeb';
-      document.forms['SendCallback'].target='frame_result';
-      document.forms['SendCallback'].submit();
-      setTimeout(() => {
-        document.forms['SendCallback'].action='https://lab.tb7.kz/pl/lite/block-public/process-html?id=1056294971';
-        document.forms['SendCallback'].target='frame_result';
-        document.forms['SendCallback'].submit();
-      }, 2000);
-      return true;
-    }
+    // SubmitForm: function()  {
+    // v-on:submit.prevent="SubmitForm()"
+
+    //   document.forms['SendCallback'].action='https://formspree.io/f/xayadkeb';
+    //   document.forms['SendCallback'].target='frame_result';
+    //   document.forms['SendCallback'].submit();
+    //   setTimeout(() => {
+    //     document.forms['SendCallback'].action='https://lab.tb7.kz/pl/lite/block-public/process-html?id=1056294971';
+    //     document.forms['SendCallback'].target='frame_result';
+    //     document.forms['SendCallback'].submit();
+    //   }, 2000);
+    //   return true;
+    // }
   }
 }
 </script>
