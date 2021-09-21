@@ -5,18 +5,17 @@
         Приходите на вебинар, где Чингис Курмангалиев —
         основатель компании — ответит на все ваши вопросы.
       </div>
-      <div class="card__btn"
-           v-on:click.stop.prevent="showModal = true">
-        Записаться на вебинар
-      </div>
+<!--      <div v-on:click.stop.prevent="showModal = true">-->
+        <a class="card__btn" href="https://lab.tb7.kz/invest2">Записаться на вебинар</a>
+<!--      </div>-->
     </div>
     <div class="card">
       <div class="card__text">
         Для лучшего ознакомления с устройством инвестиций в тендеры, документацией и договорами, запишитесь на личную встречу с Чингисом Курмангалиевым.
       </div>
-      <div class="card__btn" v-on:click.stop.prevent="showModal = true">
-        Записаться на встречу
-      </div>
+<!--      <div  v-on:click.stop.prevent="showModal = true">-->
+        <a class="card__btn" href="https://lab.tb7.kz/invest2">Записаться на встречу</a>
+<!--      </div>-->
     </div>
   </div>
   <transition name="fade" appear>
@@ -119,6 +118,7 @@ export default {
       font-size: 16px;
       line-height: 21px;
       color: #FFFFFF;
+      text-decoration: none;
     }
   }
 }

@@ -105,6 +105,10 @@ export default {
           text-align: center;
           display: flex;
           padding: 20px;
+          @media(max-width: 545px) {
+            background: none;
+            border: none;
+          }
           img {
             @media(max-width: 545px) {
               animation: beat .25s infinite alternate;

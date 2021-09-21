@@ -103,8 +103,8 @@ export default {
         }
       }
       .block__img {
-        width: 895.31px;
-        height: 927.55px;
+        width: 816.31px;
+        height: 746.55px;
         background: url("../../assets/animatebg.png") no-repeat;
         background-size: 100% 100%;
         background-position: 50% 50%;
@@ -115,7 +115,7 @@ export default {
         }
         img {
           position: relative;
-          top: 350px;
+          top: 200px;
           left: 200px;
           animation: mirrorflip 10s 0s linear infinite;
           @media(max-width: 545px) {

@@ -4,7 +4,14 @@
       <div class="main__home">
         <div class="main__container">
           <div class="vertical__block">
-            <router-link class="about" to="/">На главную</router-link>
+            <router-link class="back-home" to="/">
+              <v-typical
+                class="blink"
+                :steps="['На', 1000, 'На глав', 500, 'На главную', 1000]"
+                :loop="Infinity"
+                :wrapper="'p'"
+            ></v-typical>
+            </router-link>
           </div>
           <div class="main__block">
             <div class="main__header">
@@ -26,10 +33,10 @@
 </template>
 
 <script>
+import VTypical from 'vue-typical';
 export default {
   name: 'Art',
-  components: {
-  }
+  components: {VTypical}
 }
 
 </script>
@@ -66,7 +73,7 @@ body {
       margin-top: 50px;
       .vertical__block {
         display: none;
-        .about {
+        .back-home {
           writing-mode: vertical-rl;
           text-align: center;
           background:  rgba(89, 85, 255, 0.99);
@@ -82,7 +89,7 @@ body {
         }
         @media(min-width: 545px) {
           display: flex;
-          height: 309px;
+          //height: 309px;
           margin-right: 46px;
         }
       }
@@ -134,8 +141,8 @@ body {
     .img__block {
       display: flex;
       flex-direction: row;
-      width: 895.31px;
-      height: 927.55px;
+      width: 700.31px;
+      height: 843.55px;
       //height: 700px;
       background: url("../../assets/animatebg.png") no-repeat;
       background-size: 100% 100%;
@@ -150,7 +157,7 @@ body {
         display: flex;
         flex-direction: row;
         position: relative;
-        top: 150px;
+        top: 120px;
         left: 100px;
         width: 386px;
         height: 358.61px;

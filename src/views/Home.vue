@@ -4,7 +4,14 @@
       <div class="main__home">
         <div class="main__container">
           <div class="vertical__block">
-            <router-link class="about" to="/about">Что такое инвестиции в тендеры</router-link>
+            <router-link class="about" to="/about">
+              <v-typical
+                  class="blink"
+                  :steps="['Что такое', 1000, 'Что такое инвестиции', 500, 'Что такое инвестиции в тендеры', 1000]"
+                  :loop="Infinity"
+                  :wrapper="'p'"
+              ></v-typical>
+            </router-link>
           </div>
           <div class="main__block">
             <div class="main__header">
@@ -61,13 +68,14 @@ import { Swiper, SwiperSlide, } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 import SwiperCore, {Autoplay} from 'swiper';
 SwiperCore.use([Autoplay]);
-
+import VTypical from 'vue-typical';
 import "swiper/swiper-bundle.min.css";
 import 'swiper/swiper.scss'
 
 export default {
   name: 'Home',
   components: {
+    VTypical,
     Button,
     Swiper,
     SwiperSlide
@@ -135,9 +143,9 @@ body {
         .about {
           writing-mode: vertical-rl;
           text-align: center;
-          background:  rgba(89, 85, 255, 0.99);
-          border: 1px solid #ffffff;
-          border-left-color: rgba(89, 85, 255, 0.99);
+          background:  rgba(89, 85, 255, 0.99) !important;
+          border: 1px solid #ffffff !important;
+          border-left-color: rgba(89, 85, 255, 0.99) !important;
           -moz-border-radius-topright: 7px;
           -moz-border-radius-bottomright: 7px;
           border-top-right-radius: 9px 9px;
@@ -145,10 +153,11 @@ body {
           text-decoration: none;
           width: 100%;
           color: #FFFFFF;
+
         }
         @media(min-width: 545px) {
-          height: 309px;
-          margin-right: 46px;
+          //height: 309px;
+          margin-right: 35px;
         }
       }
       .main__block {
@@ -172,7 +181,7 @@ body {
               font-weight: bold;
               font-size: 20px;
               line-height: 24px;
-              color: #000000;
+              color: #ffffff;
             }
           }
         }
@@ -189,7 +198,7 @@ body {
               font-weight: bold;
               font-size: 20px;
               line-height: 24px;
-              color: #000000;
+              color: #ffffff;
             }
           }
           p {
@@ -224,6 +233,7 @@ body {
             display: inline-block;
             padding: 1.625rem 2.625rem 1.625rem 2.625rem;
             border: 1px solid #5955FF;
+            border-radius: 10px;
             background-color: #5955FF;
             color: #ffffff;
             font-weight: 600;
@@ -267,7 +277,9 @@ body {
   }
 
   .swiper {
-    height: 360px;
+    height: 400px;
+    position: relative;
+    top: 70px;
     .swiper-slide {
       background-position: center;
       background-size: cover;

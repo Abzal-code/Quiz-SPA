@@ -16,6 +16,7 @@
         <div class="block__footer">
           <button class="next" @click="nextQuestion()">Дальше &#8594;</button>
         </div>
+        <h3 v-if="error" class="error">Пожалуйста, выберите один из вариантов</h3>
       </div>
       <div class="question__number">
         <h2>{{b}}</h2>
@@ -38,9 +39,9 @@
               Инвестициями в тендеры от компании «Тендерная Биржа» подходят вам из за возможности заключать сделки разной длительности и разных сумм. Так вы сможете иметь финансовую подушку и получать быстрые дивиденды для повседневных нужд. Возврат инвестиций от 60 до 120 дней + до 10% прибыли.
             </div>
           </div>
-          <div class="result__share">
-            Поделиться результатом &#8594;
-          </div>
+<!--          <div class="result__share">-->
+<!--            Поделиться результатом &#8594;-->
+<!--          </div>-->
         </div>
       </div>
 
@@ -59,9 +60,9 @@
               Попробуйте поработать с инвестициями в тендеры от компании «Тендерная Биржа». Тендерные сделки защищены государством Республики Казахстан. «Тендерная Биржа» обязана вернуть деньги даже в случае апокалипсиса — это прописано в договоре.Прибыль от вложений до 10% — реалистична, но выше, чем в традиционных способах инвестирования, вы сможете ощутить пользу от достаточно быстрого результата. Срок возврата в 60-120 дней — возможность протестировать сделку на небольшом бюджете, прежде чем заключать договор на несколько лет. Методом теста пользовалось большинство наших постоянных инвесторов.
             </div>
           </div>
-          <div class="result__share">
-            Поделиться результатом &#8594;
-          </div>
+<!--          <div class="result__share">-->
+<!--            Поделиться результатом &#8594;-->
+<!--          </div>-->
         </div>
       </div>
 
@@ -151,6 +152,7 @@ export default {
       checked: true,
       testResult: '',
       selectValue: '',
+      error: false,
     }
   },
   computed: {
@@ -169,6 +171,7 @@ export default {
       } else {
         this.a++
         this.b++
+        this.error = false
       }
 
 
@@ -189,6 +192,7 @@ export default {
       } else {
         this.a--
         this.b--
+        this.error = true
       }
       console.log(this.bear, this.cheetah, this.crow)
 
@@ -283,6 +287,12 @@ export default {
             color: #ffffff;
             cursor: pointer;
           }
+        }
+        .error {
+          color: #5955FF;
+          margin-top: 20px;
+          animation: rotateIn; /* referring directly to the animation's @keyframe declaration */
+          animation-duration: 2s;
         }
       }
       .question__number {

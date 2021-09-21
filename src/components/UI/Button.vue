@@ -24,7 +24,7 @@ export default {
     display: inline-block;
     padding: 1.625rem 2.625rem 1.625rem 2.625rem;
     border: 1px solid #5955FF;
-    //border-radius: 25px;
+    //border-radius: 10px;
     background-color: #5955FF;
     color: #ffffff;
     font-weight: 600;
