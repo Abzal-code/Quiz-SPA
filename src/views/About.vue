@@ -26,9 +26,10 @@ export default {
 
 <style>
 * {
-  font-family: Exo2;
+  font-family: 'Exo 2', sans-serif;
 }
 body {
   background-color: #E8E8E8;
+  font-family: 'Exo 2', sans-serif;
 }
 </style>

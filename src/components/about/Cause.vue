@@ -13,7 +13,7 @@
             Анализируя поведение партнёров, мы составили тест на стиль поведения.
           </p>
         </div>
-<!--        <router-link class="cause__btn" to="/quiz">Пройти тест</router-link>-->
+        <router-link class="cause__btn" to="/quiz">Пройти тест</router-link>
       </div>
       <div class="block__img">
         <img src="@/assets/footer.png" alt="">
@@ -55,7 +55,7 @@ export default {
           width: auto;
         }
         .block__header {
-          font-family: Exo2;
+          font-family: 'Exo 2', sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 34px;
@@ -64,23 +64,25 @@ export default {
           color: rgba(89, 85, 255, 0.99);
         }
         .block__body {
-          font-family: PT Sans;
+          font-family: 'Exo 2', sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 16px;
           line-height: 21px;
           color: #000000;
+          margin-top: 20px;
           @media(max-width: 545px) {
             font-size: 16px;
             line-height: 21px;
-            margin-bottom: 60px;
+            margin-bottom: 75px;
           }
         }
         .cause__btn {
           display: inline-block;
+          margin-top: 20px;
           padding: 1.625rem 2.625rem 1.625rem 2.625rem;
           border: 1px solid #5955FF;
-          //border-radius: 25px;
+          border-radius: 10px;
           background-color: #5955FF;
           color: #ffffff;
           font-weight: 600;
@@ -91,6 +93,7 @@ export default {
           height: 56px;
           text-align: center;
           @media(max-width: 1140px) {
+            display: none;
             width: 100%;
           }
         }
@@ -100,8 +103,50 @@ export default {
         }
       }
       .block__img {
-        img {
+        width: 895.31px;
+        height: 927.55px;
+        background: url("../../assets/animatebg.png") no-repeat;
+        background-size: 100% 100%;
+        background-position: 50% 50%;
+        @media(max-width: 545px) {
           width: 100%;
+          padding: 0 30px;
+
+        }
+        img {
+          position: relative;
+          top: 350px;
+          left: 200px;
+          animation: mirrorflip 10s 0s linear infinite;
+          @media(max-width: 545px) {
+            top: 0;
+            left: 0;
+            width: 90%;
+          }
+          @keyframes mirrorflip {
+            0% {
+              transform: scale(1, 1);
+              -webkit-transform: scale(1, 1);
+              -moz-transform: scale(1, 1);
+              -o-transform: scale(1, 1);
+              -ms-transform: scale(1, 1);
+
+            }
+            50% {
+              transform: scale(-1, 1);
+              -webkit-transform: scale(-1, 1);
+              -moz-transform: scale(-1, 1);
+              -o-transform: scale(-1, 1);
+              -ms-transform: scale(-1, 1);
+            }
+            100% {
+              transform: scale(1, 1);
+              -webkit-transform: scale(1, 1);
+              -moz-transform: scale(1, 1);
+              -o-transform: scale(1, 1);
+              -ms-transform: scale(1, 1);
+            }
+          }
         }
       }
 

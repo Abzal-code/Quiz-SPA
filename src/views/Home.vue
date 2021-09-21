@@ -106,10 +106,11 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Exo2;
+  font-family: 'Exo 2', sans-serif;
 }
 body {
   background-color: #E8E8E8;
+  font-family: 'Exo 2', sans-serif;
 }
 .home__container {
   display: flex;
@@ -159,7 +160,7 @@ body {
         .main__header {
           display: flex;
           h2 {
-            font-family: Exo2;
+            font-family: 'Exo 2', sans-serif;
             font-style: normal;
             font-weight: bold;
             font-size: 34px;
@@ -193,7 +194,7 @@ body {
           }
           p {
             margin-top: 45px;
-            font-family: PT Sans;
+            font-family: 'Exo 2', sans-serif;
             font-style: normal;
             font-weight: normal;
             font-size: 16px;

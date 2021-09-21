@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import "animate.css"
 export default {
   name: 'Work'
 }
@@ -70,7 +71,7 @@ export default {
       display: flex;
       margin: 0 11px;
       h1 {
-        font-family: Exo2;
+        font-family: 'Exo 2', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 34px;
@@ -94,6 +95,29 @@ export default {
         flex-direction: row;
         align-items: center;
         margin-top: 30px;
+        .block__img {
+          background: rgba(89, 85, 255, 0.99);
+          border: 2px solid rgba(89, 85, 255, 0.99);
+          box-sizing: border-box;
+          border-radius: 10px;
+          width: 107px;
+          height: 106px;
+          text-align: center;
+          display: flex;
+          padding: 20px;
+          img {
+            @media(max-width: 545px) {
+              animation: beat .25s infinite alternate;
+            }
+          }
+          img:hover {
+            animation: beat .25s infinite alternate;
+          }
+          @keyframes beat{
+            to { transform: scale(1.1); }
+          }
+        }
+
         .block__text {
           padding-left: 25px;
         }

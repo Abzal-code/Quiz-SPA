@@ -232,14 +232,14 @@ export default {
             width: auto;
           }
           p {
-            font-family: Exo2;
+            font-family: 'Exo 2', sans-serif;
             font-style: normal;
             font-weight: bold;
             font-size: 20px;
             line-height: 24px;
             color: #000000;
             @media (max-width: 545px) {
-              font-family: Exo2;
+              font-family: 'Exo 2', sans-serif;
               font-style: normal;
               font-weight: bold;
               font-size: 20px;
@@ -252,14 +252,14 @@ export default {
           margin-top: 20px;
           .option {
             label {
-              font-family: PT Sans;
+              font-family: 'Exo 2', sans-serif;
               font-style: normal;
               font-weight: normal;
               font-size: 16px;
               line-height: 21px;
               color: #000000;
               @media(max-width: 545px) {
-                font-family: PT Sans;
+                font-family: 'Exo 2', sans-serif;
                 font-style: normal;
                 font-weight: normal;
                 font-size: 16px;
@@ -289,7 +289,7 @@ export default {
         h2 {
           width: 193px;
           height: 126px;
-          font-family: Exo2;
+          font-family: 'Exo 2', sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 200px;
@@ -328,7 +328,7 @@ export default {
             flex-direction: column;
             z-index: 10;
             .result__header {
-              font-family: Exo2;
+              font-family: 'Exo 2', sans-serif;
               font-style: normal;
               font-weight: bold;
               font-size: 14px;
@@ -340,7 +340,7 @@ export default {
               }
             }
             .result__body {
-              font-family: Exo2;
+              font-family: 'Exo 2', sans-serif;
               font-style: normal;
               font-size: 14px;
               line-height: 21px;

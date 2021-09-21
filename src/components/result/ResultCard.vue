@@ -98,7 +98,7 @@ export default {
     }
     .card__text {
       display: flex;
-      font-family: Exo2;
+      font-family: 'Exo 2', sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
@@ -159,7 +159,7 @@ export default {
     right: 7px;
   }
   h1 {
-    font-family: Raleway;
+    font-family: 'Exo 2', sans-serif;
     margin: 0 auto;
     color: #333333;
     font-style: normal;
@@ -168,7 +168,7 @@ export default {
     line-height: 47px;
     margin-bottom: 15px;
     @media(max-width: 1140px) {
-      font-family: Raleway;
+      font-family: 'Exo 2', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 20px;
@@ -177,14 +177,14 @@ export default {
     }
   }
   p {
-    font-family: Raleway;
+    font-family: 'Exo 2', sans-serif;
     color: #333333;
     font-weight: normal;
     font-size: 18px;
     line-height: 21px;
     margin: 15px 0;
     @media(max-width: 1140px) {
-      font-family: Raleway;
+      font-family: 'Exo 2', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
