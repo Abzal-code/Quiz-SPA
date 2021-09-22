@@ -17,6 +17,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Exo 2', sans-serif;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 .app-container {
   .header__home {

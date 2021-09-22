@@ -23,8 +23,8 @@
         </div>
         <div class="img__block">
           <div class="img">
-            <img class="question wobble animated infinite" src="@/assets/question.png" alt="">
-            <img class="q-header" src="@/assets/q-header.png" alt="">
+            <img class="question wobble animated infinite" src="@/assets/question.svg" alt="">
+            <img class="q-header" src="@/assets/q-header.svg" alt="">
           </div>
         </div>
       </div>

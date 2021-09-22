@@ -13,10 +13,10 @@
             </label>
           </div>
         </div>
+        <h3 v-if="error" class="error">Пожалуйста, выберите один из вариантов</h3>
         <div class="block__footer">
           <button class="next" @click="nextQuestion()">Дальше &#8594;</button>
         </div>
-        <h3 v-if="error" class="error">Пожалуйста, выберите один из вариантов</h3>
       </div>
       <div class="question__number">
         <h2>{{b}}</h2>
@@ -231,7 +231,7 @@ export default {
         }
         .block__question {
           width: 739px;
-          text-align: center;
+          text-align: left;
           @media(max-width: 545px) {
             width: auto;
           }
@@ -253,7 +253,7 @@ export default {
           }
         }
         .block__option {
-          margin-top: 20px;
+          margin-top: 50px;
           .option {
             label {
               font-family: 'Exo 2', sans-serif;
@@ -275,8 +275,8 @@ export default {
         }
         .block__footer {
           display: flex;
-          margin-top: 20px;
-          width: 30%;
+          margin-top: 50px;
+          width: 40%;
           height: 30px;
           .next {
             background: rgba(89, 85, 255, 0.99);
@@ -286,12 +286,16 @@ export default {
             border-radius: 7px;
             color: #ffffff;
             cursor: pointer;
+            animation: pulse; /* referring directly to the animation's @keyframe declaration */
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            //animate__infinite: infinite
           }
         }
         .error {
           color: #5955FF;
           margin-top: 20px;
-          animation: rotateIn; /* referring directly to the animation's @keyframe declaration */
+          animation: fadeInUp; /* referring directly to the animation's @keyframe declaration */
           animation-duration: 2s;
         }
       }
@@ -323,6 +327,8 @@ export default {
           display: flex;
           flex-direction: column;
           .result__img {
+            animation: fadeOutUp; /* referring directly to the animation's @keyframe declaration */
+            animation-duration: 2s;
             @media(min-width: 545px) {
               background: url("../assets/resultbg.png") no-repeat;
               background-size: auto auto;
@@ -330,7 +336,13 @@ export default {
               background-clip: content-box;
             }
               img {
-              width: 100%;
+                position: relative;
+                left: 260px;
+                width: 55%;
+                @media(max-width: 545px) {
+                  left: 0;
+                  width: 100%;
+                }
             }
           }
           .result__text {

@@ -16,7 +16,7 @@
         <router-link class="cause__btn" to="/quiz">Пройти тест</router-link>
       </div>
       <div class="block__img">
-        <img src="@/assets/footer.png" alt="">
+        <img src="@/assets/footer.svg" alt="">
       </div>
     </div>
   </div>
