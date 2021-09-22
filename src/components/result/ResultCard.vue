@@ -6,7 +6,7 @@
         основатель компании — ответит на все ваши вопросы.
       </div>
 <!--      <div v-on:click.stop.prevent="showModal = true">-->
-        <a class="card__btn" href="https://lab.tb7.kz/invest2">Записаться на вебинар</a>
+        <a class="card__btn" href="https://lab.tb7.kz/invest_quiz">Записаться на вебинар</a>
 <!--      </div>-->
     </div>
     <div class="card">
@@ -14,7 +14,7 @@
         Для лучшего ознакомления с устройством инвестиций в тендеры, документацией и договорами, запишитесь на личную встречу с Чингисом Курмангалиевым.
       </div>
 <!--      <div  v-on:click.stop.prevent="showModal = true">-->
-        <a class="card__btn" href="https://lab.tb7.kz/invest2">Записаться на встречу</a>
+        <a class="card__btn" href="https://lab.tb7.kz/invest_quiz">Записаться на встречу</a>
 <!--      </div>-->
     </div>
   </div>
