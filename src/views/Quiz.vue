@@ -424,7 +424,6 @@ export default {
       transform: translate(-50%, -50%);
       z-index: 99;
       width: 100%;
-      height: 91%;
       background-color: #FFF;
       border-radius: 16px;
       @media(max-width: 545px) {
@@ -432,8 +431,8 @@ export default {
       }
       @media(min-width: 545px) {
         padding: 25px;
-        max-width: 742px;
-        max-height: 879px;
+        width: 742px;
+        height: 710px;
       }
       .material-icons {
         display: inline-block;
