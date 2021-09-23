@@ -33,7 +33,7 @@
       </span>
           <div class="block__result">
             <div v-if="testResult === 'crow'" class="result__wrapper">
-              <div class="result__container">
+              <div class="result__container crow">
                 <div class="result__img">
                   <img src="@/assets/crow.png" alt="">
                 </div>
@@ -51,7 +51,7 @@
             </div>
 
             <div v-if="testResult === 'bear'" class="result__wrapper">
-              <div class="result__container">
+              <div class="result__container bear">
                 <div class="result__img">
                   <img src="@/assets/bear.png" alt="">
                 </div>
@@ -69,7 +69,7 @@
             </div>
 
             <div v-if="testResult === 'cheetah'" class="result__wrapper">
-              <div class="result__container">
+              <div class="result__container cheetah">
                 <div class="result__img">
                   <img src="@/assets/cheetah.png" alt="">
                 </div>
@@ -86,7 +86,7 @@
               </div>
             </div>
 
-            <div class="card-box">
+<!--            <div class="card-box">-->
               <div class="card">
                 <div class="card__text">
                   Приходите на вебинар, где Чингис Курмангалиев —
@@ -94,7 +94,7 @@
                 </div>
                 <a class="card__btn" href="https://lab.tb7.kz/invest_quiz">Записаться на вебинар</a>
               </div>
-            </div>
+<!--            </div>-->
           </div>
         </div>
       </transition>
@@ -292,10 +292,10 @@ export default {
       width: auto;
       padding: 10px;
     }
-    updateq {
-      animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
-      animation-duration: 2s;
-    }
+    //.updateq {
+    //  animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
+    //  animation-duration: 2s;
+    //}
     .quiz__container {
       display: flex;
       justify-content: space-between;
@@ -446,17 +446,9 @@ export default {
       .block__result {
         display: flex;
         flex-direction: column;
-        //width: 742px;
-        //height: 879px;
         margin: 0 auto;
         .result__wrapper {
           .result__container {
-            display: flex;
-            flex-direction: column;
-            background: url("../assets/resultbg.png") no-repeat;
-            background-size: auto auto;
-            background-position: 50% 145%;
-            background-clip: content-box;
             .result__img {
               img {
                 position: relative;
@@ -499,31 +491,45 @@ export default {
               }
             }
           }
-        }
-        .card-box {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          max-width: 1140px;
-          width: 100%;
-          margin-top: 20px;
-          animation: slideInUp; /* referring directly to the animation's @keyframe declaration */
-          animation-duration: 2s;
-          @media(max-width: 545px) {
+          .bear {
+            display: flex;
             flex-direction: column;
-            width: auto;
+            background: url("../assets/resultbg.png") no-repeat;
+            background-size: auto auto;
+            background-position: 100% -500%;;
+            background-clip: content-box;
           }
+          .crow {
+            display: flex;
+            flex-direction: column;
+            background: url("../assets/resultbg.png") no-repeat;
+            background-size: auto auto;
+            background-position: 100% 100%;;
+            background-clip: content-box;
+          }
+          .cheetah {
+            display: flex;
+            flex-direction: column;
+            background: url("../assets/resultbg.png") no-repeat;
+            background-size: auto auto;
+            background-position: 100% 100%;;
+            background-clip: content-box;
+          }
+        }
+
+
           .card {
+            animation: slideInUp; /* referring directly to the animation's @keyframe declaration */
+            animation-duration: 2s;
             display: flex;
             flex-direction: column;
             position: relative;
             bottom: 100px;
             width: 100%;
-            border: 1px solid;
             background: #F2F2F2;
             box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            margin: 10px;
+            margin-top: 30px;
             padding: 10px;
             z-index: 99;
             @media (max-width: 545px) {
@@ -558,7 +564,7 @@ export default {
               animation-iteration-count: infinite;
             }
           }
-        }
+
       }
     }
     .fade-enter-active,
