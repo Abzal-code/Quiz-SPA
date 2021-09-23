@@ -1,29 +1,105 @@
 <template>
   <div class="quiz">
     <div class="quiz__container" v-for="(element, index) of questions.slice(a,b)" :key="index" v-show="quiz">
-      <div class="quiz__wrapper" >
+      <div class="quiz__wrapper" v-bind:class="{updateq}">
         <div class="block__question">
           <p>{{element.question}}</p>
         </div>
         <div class="block__option">
           <div class="option" v-for="(item, index) in element.suggestions" :key="index">
             <label>
-              <input type="radio" name="{{item.type}}" value="{{item.type}}" @click="selectResponse(item.type)" :checked="false">
+              <input type="radio" name="{{item.type}}" value="{{item.type}}" @click="selectResponse(item.type)" v-bind:checked="this.checked">
               {{item.suggestion}}
             </label>
           </div>
         </div>
         <h3 v-if="error" class="error">Пожалуйста, выберите один из вариантов</h3>
         <div class="block__footer">
-          <button class="next" @click="nextQuestion()">Дальше &#8594;</button>
+          <button class="next" @click="nextQuestion()">{{ this.b == 5 ? finish.toUpperCase() : next.toUpperCase()}} &#8594;</button>
         </div>
       </div>
       <div class="question__number">
         <h2>{{b}}</h2>
       </div>
     </div>
-    <div class="block__result" v-if="result">
 
+      <transition name="fade" appear>
+        <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+      </transition>
+      <transition name="slide" appear>
+        <div class="modal" v-if="showModal">
+      <span>
+        <i class="material-icons" v-on:click.stop.prevent="showModal = false">&#10008;</i>
+      </span>
+          <div class="block__result">
+            <div v-if="testResult === 'crow'" class="result__wrapper">
+              <div class="result__container">
+                <div class="result__img">
+                  <img src="@/assets/crow.png" alt="">
+                </div>
+                <div class="result__text">
+                  <div class="result__header">
+                    <h3>Инвестор Ворон.</h3>
+                  </div>
+                  <div class="result__body">
+                    Самый разумный вид поведения в инвестициях. Вы не против рискнуть, но все же стараетесь заранее собрать максимум информации и просчитать возможные последствия. «Охотитесь» за высокой прибылью, но не забываете о «запасах» на «зиму».
+                    <br><br>
+                    Инвестициями в тендеры от компании «Тендерная Биржа» подходят вам из за возможности заключать сделки разной длительности и разных сумм. Так вы сможете иметь финансовую подушку и получать быстрые дивиденды для повседневных нужд. Возврат инвестиций от 60 до 120 дней + до 10% прибыли.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="testResult === 'bear'" class="result__wrapper">
+              <div class="result__container">
+                <div class="result__img">
+                  <img src="@/assets/bear.png" alt="">
+                </div>
+                <div class="result__text">
+                  <div class="result__header">
+                    <h3>Инвестор медведь.</h3>
+                  </div>
+                  <div class="result__body">
+                    Вы избегаете риска. Предпочитаете точно знать, что именно может произойти. Заключаете договора на длительный период, делая «запасы» на «зиму». Всегда хотите быть уверены, что не совершаете ошибку. Ваша чрезмерная осторожность приводит к низкой прибыли.
+                    <br><br>
+                    Попробуйте поработать с инвестициями в тендеры от компании «Тендерная Биржа». Тендерные сделки защищены государством Республики Казахстан. «Тендерная Биржа» обязана вернуть деньги даже в случае апокалипсиса — это прописано в договоре.Прибыль от вложений до 10% — реалистична, но выше, чем в традиционных способах инвестирования, вы сможете ощутить пользу от достаточно быстрого результата. Срок возврата в 60-120 дней — возможность протестировать сделку на небольшом бюджете, прежде чем заключать договор на несколько лет. Методом теста пользовалось большинство наших постоянных инвесторов.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="testResult === 'cheetah'" class="result__wrapper">
+              <div class="result__container">
+                <div class="result__img">
+                  <img src="@/assets/cheetah.png" alt="">
+                </div>
+                <div class="result__text">
+                  <div class="result__header">
+                    <h3>Инвестор гепард.</h3>
+                  </div>
+                  <div class="result__body">
+                    Вы любите риск. Рисковать классно. И неважно, окажется ли конкретное решение верным. Вы не упускаете возможности заработать. Ваша гонка за большой прибылью может привести вас к мошенникам.
+                    <br><br>
+                    Попробуйте поработать с инвестициями в тендеры от компании «Тендерная Биржа». 60 дней — небольшой срок ожидания. Прибыль до 10% — возможность оценить реалистичный доход от вложений и узнать преимущества стабильного результата.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-box">
+              <div class="card">
+                <div class="card__text">
+                  Приходите на вебинар, где Чингис Курмангалиев —
+                  основатель компании — ответит на все ваши вопросы.
+                </div>
+                <a class="card__btn" href="https://lab.tb7.kz/invest_quiz">Записаться на вебинар</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+    <div class="mobile__result" v-if="mobile">
       <div v-if="testResult === 'crow'" class="result__wrapper">
         <div class="result__container">
           <div class="result__img">
@@ -39,9 +115,6 @@
               Инвестициями в тендеры от компании «Тендерная Биржа» подходят вам из за возможности заключать сделки разной длительности и разных сумм. Так вы сможете иметь финансовую подушку и получать быстрые дивиденды для повседневных нужд. Возврат инвестиций от 60 до 120 дней + до 10% прибыли.
             </div>
           </div>
-<!--          <div class="result__share">-->
-<!--            Поделиться результатом &#8594;-->
-<!--          </div>-->
         </div>
       </div>
 
@@ -60,9 +133,6 @@
               Попробуйте поработать с инвестициями в тендеры от компании «Тендерная Биржа». Тендерные сделки защищены государством Республики Казахстан. «Тендерная Биржа» обязана вернуть деньги даже в случае апокалипсиса — это прописано в договоре.Прибыль от вложений до 10% — реалистична, но выше, чем в традиционных способах инвестирования, вы сможете ощутить пользу от достаточно быстрого результата. Срок возврата в 60-120 дней — возможность протестировать сделку на небольшом бюджете, прежде чем заключать договор на несколько лет. Методом теста пользовалось большинство наших постоянных инвесторов.
             </div>
           </div>
-<!--          <div class="result__share">-->
-<!--            Поделиться результатом &#8594;-->
-<!--          </div>-->
         </div>
       </div>
 
@@ -81,13 +151,11 @@
               Попробуйте поработать с инвестициями в тендеры от компании «Тендерная Биржа». 60 дней — небольшой срок ожидания. Прибыль до 10% — возможность оценить реалистичный доход от вложений и узнать преимущества стабильного результата.
             </div>
           </div>
-<!--          <div class="result__share">-->
-<!--            Поделиться результатом &#8594;-->
-<!--          </div>-->
         </div>
       </div>
       <result-card/>
     </div>
+
   </div>
 </template>
 
@@ -149,30 +217,40 @@ export default {
       cheetah: 0,
       crow: 0,
       bear: 0,
-      checked: true,
+      checked: false,
       testResult: '',
       selectValue: '',
       error: false,
+      next: 'дальше',
+      finish: 'результат',
+      showModal: false,
+      mobile: false,
+      updateq: false
     }
   },
   computed: {
-
+    // checkedInputs() {
+    //   return this.checked = true
+    // }
   },
   methods: {
     selectResponse(value) {
       console.log(value)
       return this.selectValue = value;
     },
-
     nextQuestion() {
       if (this.questions.length - 1 == this.a) {
-        this.result = true
-        this.quiz = false
+        this.showModal = true
+        if (screen.width < 545 && this.b > 4) {
+          this.quiz = false
+          this.mobile = true
+        }
       } else {
         this.a++
         this.b++
         this.error = false
       }
+
 
 
       if (this.selectValue === 'cheetah') {
@@ -194,7 +272,7 @@ export default {
         this.b--
         this.error = true
       }
-      console.log(this.bear, this.cheetah, this.crow)
+      // console.log(this.bear, this.cheetah, this.crow)
 
 
 
@@ -207,25 +285,34 @@ export default {
 <style lang="scss" scoped>
   .quiz {
     display: flex;
+    width: 1145px;
     height: 100vh;
+    margin: 0 auto;
     @media(max-width: 545px) {
       width: auto;
       padding: 10px;
     }
+    updateq {
+      animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
+      animation-duration: 2s;
+    }
     .quiz__container {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      //justify-content: center;
       align-items: center;
       width: 100%;
       height: 100%;
+      animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
+      animation-duration: 2s;
       @media(max-width: 545px) {
         width: auto;
       }
       .quiz__wrapper {
         display: flex;
         flex-direction: column;
-        align-items: center;
         @media(max-width: 545px) {
+          align-items: center;
           width: auto;
           padding: 20px;
         }
@@ -254,13 +341,13 @@ export default {
         }
         .block__option {
           margin-top: 50px;
+          line-height: 24px;
           .option {
             label {
               font-family: 'Exo 2', sans-serif;
               font-style: normal;
               font-weight: normal;
               font-size: 16px;
-              line-height: 21px;
               color: #000000;
               @media(max-width: 545px) {
                 font-family: 'Exo 2', sans-serif;
@@ -316,7 +403,183 @@ export default {
         }
       }
     }
-    .block__result {
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 98;
+      background-color: rgba(0, 0, 0, 0.3);
+      height: 130vh;
+      @media(max-width: 545px) {
+        height: 100%;
+        display: none;
+      }
+    }
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 99;
+      width: 100%;
+      height: 91%;
+      background-color: #FFF;
+      border-radius: 16px;
+      @media(max-width: 545px) {
+        display: none;
+      }
+      @media(min-width: 545px) {
+        padding: 25px;
+        max-width: 742px;
+        max-height: 879px;
+      }
+      .material-icons {
+        display: inline-block;
+        color: black;
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 7px;
+      }
+      .block__result {
+        display: flex;
+        flex-direction: column;
+        //width: 742px;
+        //height: 879px;
+        margin: 0 auto;
+        .result__wrapper {
+          .result__container {
+            display: flex;
+            flex-direction: column;
+            background: url("../assets/resultbg.png") no-repeat;
+            background-size: auto auto;
+            background-position: 50% 145%;
+            background-clip: content-box;
+            .result__img {
+              img {
+                position: relative;
+                left: 90px;
+                width: 75%;
+                @media(max-width: 545px) {
+                  left: 0;
+                  width: 100%;
+                }
+              }
+            }
+            .result__text {
+              display: flex;
+              flex-direction: column;
+              position: relative;
+              bottom: 90px;
+              z-index: 10;
+              @media(max-width: 545px) {
+                padding: 20px;
+              }
+              .result__header {
+                font-family: 'Exo 2', sans-serif;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 21px;
+                text-transform: uppercase;
+                color: #000000;
+                @media(max-width: 545px) {
+                  color: #000000;
+                }
+              }
+              .result__body {
+                font-family: 'Exo 2', sans-serif;
+                font-style: normal;
+                font-size: 14px;
+                line-height: 21px;
+                color: #000000;
+                margin-top: 20px;
+              }
+            }
+          }
+        }
+        .card-box {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          max-width: 1140px;
+          width: 100%;
+          margin-top: 20px;
+          animation: slideInUp; /* referring directly to the animation's @keyframe declaration */
+          animation-duration: 2s;
+          @media(max-width: 545px) {
+            flex-direction: column;
+            width: auto;
+          }
+          .card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            bottom: 100px;
+            width: 100%;
+            border: 1px solid;
+            background: #F2F2F2;
+            box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            z-index: 99;
+            @media (max-width: 545px) {
+              width: auto;
+            }
+            .card__text {
+              display: flex;
+              font-family: 'Exo 2', sans-serif;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 21px;
+              color: #000000;
+            }
+            .card__btn {
+              margin-top: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: #5955FF;
+              border-radius: 10px;
+              height: 50px;
+              cursor: pointer;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 21px;
+              color: #FFFFFF;
+              text-decoration: none;
+              animation: pulse; /* referring directly to the animation's @keyframe declaration */
+              animation-duration: 2s;
+              animation-iteration-count: infinite;
+            }
+          }
+        }
+      }
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+    }
+    .slide-enter-active,
+    .slide-leave-active {
+      transition: transform .5s;
+    }
+    .slide-enter,
+    .slide-leave-to {
+      transform: translateY(-50%) translateX(100vw);
+    }
+
+
+    .mobile__result {
       display: flex;
       flex-direction: column;
       max-width: 1140px;
@@ -327,7 +590,7 @@ export default {
           display: flex;
           flex-direction: column;
           .result__img {
-            animation: fadeOutUp; /* referring directly to the animation's @keyframe declaration */
+            animation: fadeInDown; /* referring directly to the animation's @keyframe declaration */
             animation-duration: 2s;
             @media(min-width: 545px) {
               background: url("../assets/resultbg.png") no-repeat;
@@ -335,14 +598,14 @@ export default {
               background-position: 50% 50%;
               background-clip: content-box;
             }
-              img {
-                position: relative;
-                left: 260px;
-                width: 55%;
-                @media(max-width: 545px) {
-                  left: 0;
-                  width: 100%;
-                }
+            img {
+              position: relative;
+              left: 260px;
+              width: 55%;
+              @media(max-width: 545px) {
+                left: 0;
+                width: 100%;
+              }
             }
           }
           .result__text {
@@ -357,6 +620,8 @@ export default {
               line-height: 21px;
               text-transform: uppercase;
               color: #000000;
+              animation: zoomInUp; /* referring directly to the animation's @keyframe declaration */
+              animation-duration: 2s;
               @media(max-width: 545px) {
                 color: #ffffff;
               }
@@ -368,14 +633,11 @@ export default {
               line-height: 21px;
               color: #000000;
               margin-top: 20px;
+              animation: slideInRight; /* referring directly to the animation's @keyframe declaration */
+              animation-duration: 2s;
             }
           }
-          .result__share {
-            margin-top: 40px;
-            color: #5955FF;
-          }
         }
-
       }
     }
   }

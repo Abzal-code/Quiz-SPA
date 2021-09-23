@@ -1,7 +1,7 @@
 <template>
   <div class="home" @click="nextSlide()">
     <div class="home__container">
-      <div class="main__home">
+      <div  class="main__home">
         <div class="main__container">
           <div class="vertical__block">
             <router-link class="about" to="/about">
@@ -83,6 +83,7 @@ export default {
   data() {
     return {
       idx: 0,
+      animated: false,
       polling: null,
 
       swiperOption: {
@@ -105,6 +106,10 @@ export default {
     },
 
   },
+  beforeUnmount() {
+    this.animated = true
+    console.log(this.animated)
+  },
 }
 </script>
 
@@ -120,6 +125,7 @@ body {
   background-color: #E8E8E8;
   font-family: 'Exo 2', sans-serif;
 }
+
 .home__container {
   display: flex;
   flex-direction: column;
@@ -182,6 +188,9 @@ body {
               font-size: 20px;
               line-height: 24px;
               color: #ffffff;
+            }
+            @media(max-width: 360px) {
+              font-size: 18px;
             }
           }
         }

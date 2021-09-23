@@ -98,7 +98,7 @@ body {
         flex-direction: column;
         justify-content: center;
         @media(max-width: 545px) {
-          //margin: 0 10px;
+          margin-left: 30px;
         }
         .main__header {
           display: flex;

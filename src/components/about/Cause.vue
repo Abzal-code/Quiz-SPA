@@ -1,6 +1,6 @@
 <template>
   <div class="cause">
-    <div class="cause__container">
+    <div class="cause__container" >
       <div class="block__text">
         <div class="block__header">
           <h3>Почему мы?</h3>
@@ -16,7 +16,7 @@
         <router-link class="cause__btn" to="/quiz">Пройти тест</router-link>
       </div>
       <div class="block__img">
-        <img src="@/assets/footer.svg" alt="">
+        <img src="@/assets/footer.svg" alt="" >
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@ export default {
       @media(max-width: 545px) {
         flex-direction: column-reverse;
         justify-content: space-around;
-        padding: 0 15px;
+        padding: 0 30px;
         color: #000000;
         height: 600px;
       }
