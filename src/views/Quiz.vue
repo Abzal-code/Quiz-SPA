@@ -445,6 +445,7 @@ export default {
       .block__result {
         display: flex;
         flex-direction: column;
+        height: 100%;
         margin: 0 auto;
         .result__wrapper {
           .result__container {
