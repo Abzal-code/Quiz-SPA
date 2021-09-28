@@ -41,7 +41,6 @@ export default {
     flex-direction: column;
     position: relative;
     width: 100%;
-    border: 1px solid;
     background: #F2F2F2;
     box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -60,13 +59,13 @@ export default {
       color: #000000;
     }
     .card__btn {
-      margin-top: 20px;
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: #5955FF;
       border-radius: 10px;
-      height: 50px;
+      height: 40px;
       cursor: pointer;
       font-style: normal;
       font-weight: 600;
@@ -77,6 +76,10 @@ export default {
       animation: pulse; /* referring directly to the animation's @keyframe declaration */
       animation-duration: 2s;
       animation-iteration-count: infinite;
+      @media(max-width: 545px) {
+        margin-top: 20px;
+        height: 50px;
+      }
     }
   }
 }
