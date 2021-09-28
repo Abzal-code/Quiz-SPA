@@ -12,6 +12,7 @@
                 <input type="radio"
                        :value="response.value"
                        :name="index"
+                       @click="btn = true"
                        v-model="userResponses[index]"> {{response.text}}
               </label>
             </div>
@@ -22,10 +23,10 @@
         </div>
         <!-- The two navigation buttons -->
         <!-- Note: prev is hidden on first question -->
-        <h3 v-show="this.error " class="error">Пожалуйста, выберите один из вариантов</h3>
+<!--        <h3 v-show="this.error " class="error">Пожалуйста, выберите один из вариантов</h3>-->
         <div class="block__footer">
           <button class="next" v-if="questionIndex > 0" v-on:click="prev">&lArr; назад</button>
-          <button class="next" v-on:click="next">дальше &rArr;</button>
+          <button class="next" v-show="btn === true" v-on:click="next">дальше &rArr;</button>
         </div>
 
       </div>
@@ -267,19 +268,22 @@ export default {
       showModal: false,
       mobile: false,
       result: '',
-      testResult: '',
-      selectValue: '',
       error: false,
+      btn: false
     }
+  },
+  mounted() {
+    console.log(this.result)
   },
   methods: {
     // Go to next question
     next: function() {
       if (this.userResponses.length > 0) {
         this.questionIndex++
-        this.error = false
+        this.btn = false
+        // this.error = false
       } else {
-        this.error = true
+        // this.error = true
       }
 
       if (this.questionIndex === 5 && screen.width > 545) {
@@ -314,7 +318,6 @@ export default {
         }
       }
       this.result = maxEl
-      console.log(this.result, 'result');
       return maxEl;
     },
 
