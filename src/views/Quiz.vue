@@ -25,8 +25,10 @@
         <!-- Note: prev is hidden on first question -->
 <!--        <h3 v-show="this.error " class="error">Пожалуйста, выберите один из вариантов</h3>-->
         <div class="block__footer">
-          <button class="next" v-if="questionIndex > 0" v-on:click="prev">&lArr; назад</button>
-          <button class="next" v-show="btn === true" v-on:click="next">дальше &rArr;</button>
+          <button class="prev" v-if="questionIndex > 0" v-on:click="prev">&lArr; назад</button>
+          <div class="wrapper__next" v-show="btn === true">
+            <button class="next"  v-on:click="next">дальше &rArr;</button>
+          </div>
         </div>
 
       </div>
@@ -442,7 +444,7 @@ export default {
           margin-top: 50px;
           width: 95%;
           height: 30px;
-          .next {
+          .prev {
             background: rgba(89, 85, 255, 0.99);
             border-color: rgba(89, 85, 255, 0.99);
             width: 200px;
@@ -456,6 +458,26 @@ export default {
             margin-right: 30px;
             @media(max-width: 545px) {
               width: 150px;
+            }
+          }
+          .wrapper__next {
+            animation: slideInRight;
+            animation-duration: 2s;
+            .next {
+              background: rgba(89, 85, 255, 0.99);
+              border-color: rgba(89, 85, 255, 0.99);
+              width: 200px;
+              height: 30px;
+              border-radius: 7px;
+              color: #ffffff;
+              cursor: pointer;
+              animation: pulse; /* referring directly to the animation's @keyframe declaration */
+              animation-duration: 2s;
+              animation-iteration-count: infinite;
+              margin-right: 30px;
+              @media(max-width: 545px) {
+                width: 150px;
+              }
             }
           }
         }
