@@ -7,12 +7,7 @@
 </template>
 
 <script>
-import Button from "@/components/UI/Button";
-export default {
-  components: {
-    Button
-  }
-}
+
 
 </script>
 
